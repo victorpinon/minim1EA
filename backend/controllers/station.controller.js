@@ -31,7 +31,7 @@ stationCtrl.createStation = async (req,res) => {
 
 stationCtrl.addBike = async(req,res) => {
     const {id} = req.params;
-    const bike = req.body.bike;
+    const bike = req.body._id;
     await Station.findByIdAndUpdate(id, {$push: {bikes: bike}});
     await Bike.findOneAndUpdate(
         { "_id" : bike },
@@ -42,7 +42,7 @@ stationCtrl.addBike = async(req,res) => {
 
 stationCtrl.deleteBike = async(req,res) => {
     const {id} = req.params;
-    const bike = req.body.bike;
+    const bike = req.body._id;
     await Station.findByIdAndUpdate(id, {$pull: {bikes: bike}});
     await Bike.findOneAndUpdate(
         { "_id" : bike },

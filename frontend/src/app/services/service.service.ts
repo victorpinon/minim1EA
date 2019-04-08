@@ -8,7 +8,8 @@ import { Station } from '../models/station';
 })
 export class ServiceService {
 
-  bike: Bike[];
+  stationBike: Bike[];
+  unassignedBike: Bike[];
   selectedBike: Bike;
 
   station: Station[];
@@ -29,12 +30,12 @@ export class ServiceService {
     return this.http.get(this.URL_API + `/station/get/${_id}`);
   }
 
-  addBike(station: Station) {
-    return this.http.put(this.URL_API + `/station/bike/add/${station._id}`, station);
+  addBike(stationId: string, bike: Bike) {
+    return this.http.put(this.URL_API + `/station/bike/add/${stationId}`, bike);
   }
 
-  deleteBike(station: Station) {
-    return this.http.put(this.URL_API + `/station/bike/delete/${station._id}`, station);
+  deleteBike(stationId: string, bike: Bike) {
+    return this.http.put(this.URL_API + `/station/bike/delete/${stationId}`, bike);
   }
 
   getUnassignedBikes() {

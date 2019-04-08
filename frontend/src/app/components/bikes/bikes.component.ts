@@ -19,13 +19,41 @@ export class BikesComponent implements OnInit {
 
   ngOnInit() {
     this.getStation();
+    this.getUnassignedBikes();
   }
 
   getStation() {
-    console.log(this.serviceService.getStation("5cab15330cbbd628b8d600d2"));
-    this.serviceService.getStation(localStorage.getItem('stationId'))
-    .subscribe(res =>{
-      this.serviceService.bike = res as Bike[];
+    this.serviceService.getStation(localStorage.getItem("stationId"))
+      .subscribe(res =>{
+        this.serviceService.stationBike = res["bikes"] as Bike[];
+    });
+  }
+
+  addBike(bike) {
+    this.serviceService.selectedBike = bike;
+    this.serviceService.addBike(localStorage.getItem("stationId"), bike)
+      .subscribe(res =>{
+        this.getStation();
+        this.getUnassignedBikes();
+        M.toast({html: 'Added Successfully'});
+      });
+  }
+
+  deleteBike(bike) {
+    this.serviceService.selectedBike = bike;
+    console.log(bike)
+    this.serviceService.deleteBike(localStorage.getItem("stationId"), bike)
+      .subscribe(res =>{
+        this.getStation();
+        this.getUnassignedBikes();
+        M.toast({html: 'Deleted Successfully'});
+      });
+  }
+
+  getUnassignedBikes() {
+    this.serviceService.getUnassignedBikes()
+      .subscribe(res =>{
+        this.serviceService.unassignedBike = res as Bike[];
     })
   }
 

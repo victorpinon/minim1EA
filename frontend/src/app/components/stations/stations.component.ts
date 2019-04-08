@@ -22,8 +22,8 @@ export class StationsComponent implements OnInit {
 
   getStations() {
     this.serviceService.getStations()
-    .subscribe(res =>{
-      this.serviceService.station = res as Station[];
+      .subscribe(res =>{
+        this.serviceService.station = res as Station[];
     })
   }
 
