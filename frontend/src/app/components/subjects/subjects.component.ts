@@ -21,6 +21,7 @@ export class SubjectsComponent implements OnInit {
   }
 
   addStudent(form: NgForm) {
+    console.log(form.value);
     if(form.value._id){
       this.subjectService.putStudent(form.value)
       .subscribe(res => {
@@ -42,11 +43,11 @@ export class SubjectsComponent implements OnInit {
     this.subjectService.getSubjects()
     .subscribe(res =>{
       this.subjectService.subject = res as Subject[];
-      console.log(res);
     })
   }
 
   editSubject(subject: Subject) {
+    console.log(subject);
     this.subjectService.selectedSubject = subject;
   }
 

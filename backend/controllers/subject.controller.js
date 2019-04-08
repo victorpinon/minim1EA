@@ -22,7 +22,7 @@ subjectCtrl.createSubject = async (req,res) => {
 
 subjectCtrl.addStudent = async(req,res) => {
     const {id} = req.params;
-    const student = req.body.student;
+    const student = req.body.students;
     await Subject.findByIdAndUpdate(id, {$push: {students: student}});
     res.json({status: 'Subject updated'});
 }
