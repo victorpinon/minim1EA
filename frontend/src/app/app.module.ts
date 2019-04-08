@@ -7,14 +7,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { SubjectsComponent } from './components/subjects/subjects.component';
 import { StationsComponent } from './components/stations/stations.component';
 import { BikesComponent } from './components/bikes/bikes.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SubjectsComponent,
     StationsComponent,
     BikesComponent
   ],
