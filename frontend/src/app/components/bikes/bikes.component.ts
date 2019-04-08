@@ -15,7 +15,14 @@ declare var M: any;
 })
 export class BikesComponent implements OnInit {
 
-  constructor(private serviceService: ServiceService, private router: Router) { }
+  constructor(private serviceService: ServiceService, private router: Router) { 
+    if(this.router.getCurrentNavigation().extras.queryParams!=undefined){
+      this.serviceService.selectedStation = this.router.getCurrentNavigation().extras.queryParams.station;
+    }
+    else{
+      this.router.navigate([""]);
+    }
+  }
 
   ngOnInit() {
     this.getStation();
@@ -23,7 +30,7 @@ export class BikesComponent implements OnInit {
   }
 
   getStation() {
-    this.serviceService.getStation(localStorage.getItem("stationId"))
+    this.serviceService.getStation(this.serviceService.selectedStation._id)
       .subscribe(res =>{
         this.serviceService.stationBike = res["bikes"] as Bike[];
     });
@@ -31,7 +38,7 @@ export class BikesComponent implements OnInit {
 
   addBike(bike) {
     this.serviceService.selectedBike = bike;
-    this.serviceService.addBike(localStorage.getItem("stationId"), bike)
+    this.serviceService.addBike(this.serviceService.selectedStation._id, bike)
       .subscribe(res =>{
         this.getStation();
         this.getUnassignedBikes();
@@ -41,8 +48,7 @@ export class BikesComponent implements OnInit {
 
   deleteBike(bike) {
     this.serviceService.selectedBike = bike;
-    console.log(bike)
-    this.serviceService.deleteBike(localStorage.getItem("stationId"), bike)
+    this.serviceService.deleteBike(this.serviceService.selectedStation._id, bike)
       .subscribe(res =>{
         this.getStation();
         this.getUnassignedBikes();

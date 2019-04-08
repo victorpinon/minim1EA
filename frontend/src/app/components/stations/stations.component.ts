@@ -13,6 +13,7 @@ declare var M: any;
 })
 export class StationsComponent implements OnInit {
 
+
   constructor(private serviceService: ServiceService, private router: Router) { }
 
   ngOnInit() {
@@ -28,9 +29,7 @@ export class StationsComponent implements OnInit {
   }
 
   viewStation(station) {
-    this.serviceService.selectedStation = station;
-    localStorage.setItem('stationId', station["_id"]);
-    this.router.navigateByUrl("/bikes");
+    this.router.navigate(["/bikes"], {queryParams: {"station": station}} );
   }
 
 }
