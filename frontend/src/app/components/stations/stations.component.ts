@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import {Router} from "@angular/router";
-import { Bike } from 'src/app/models/bike';
 import { Station } from 'src/app/models/station';
 import { ServiceService } from 'src/app/Services/Service.Service';
 
@@ -18,6 +16,7 @@ export class StationsComponent implements OnInit {
   constructor(private serviceService: ServiceService, private router: Router) { }
 
   ngOnInit() {
+    localStorage.removeItem('stationId');
     this.getStations();
   }
 
@@ -30,6 +29,7 @@ export class StationsComponent implements OnInit {
 
   viewStation(station) {
     this.serviceService.selectedStation = station;
+    localStorage.setItem('stationId', station["_id"]);
     this.router.navigateByUrl("/bikes");
   }
 

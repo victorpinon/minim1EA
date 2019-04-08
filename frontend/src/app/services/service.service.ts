@@ -25,8 +25,8 @@ export class ServiceService {
     return this.http.get(this.URL_API + '/stations');
   }
 
-  getStation(_id: string) {
-    return this.http.delete(this.URL_API + `/station/get/${_id}`)
+  getStation(_id: String) {
+    return this.http.get(this.URL_API + `/station/get/${_id}`);
   }
 
   addBike(station: Station) {
