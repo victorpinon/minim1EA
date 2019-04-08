@@ -6,7 +6,7 @@ const bike = require('../controllers/bike.controller');
 
 router.get('/stations', station.getStations);
 router.get('/station/get/:id', station.getStation);
-router.post('/station', station.createStation);
+router.post('/station/create', station.createStation);
 router.put('/station/bike/add/:id', station.addBike);
 router.put('/station/bike/delete/:id', station.deleteBike);
 router.delete('/station/delete/:id', station.deleteStation);
