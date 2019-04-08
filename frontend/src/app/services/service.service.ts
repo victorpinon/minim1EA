@@ -6,7 +6,7 @@ import { Station } from '../models/station';
 @Injectable({
   providedIn: 'root'
 })
-export class BikeService {
+export class ServiceService {
 
   bike: Bike[];
   selectedBike: Bike;

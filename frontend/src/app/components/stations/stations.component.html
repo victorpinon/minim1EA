@@ -1,3 +1,29 @@
-<p>
-  stations works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col s7">
+      <table>
+        <thead>
+          <th>Station</th>
+          <th>State</th>
+          <th>Description</th>
+          <th>View</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let station of serviceService.station">
+            <td>{{station.name}}</td>
+            <td>{{station.state}}</td>
+            <td>{{station.description}}</td>
+            <td>
+              <!--
+                <a (click)="deleteSubject(subject._id, subjectForm)">
+              -->
+              <a>
+                <i class="material-icons">pageview</i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
